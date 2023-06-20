@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a59fe6;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.navbar-logo {
+  width: auto;
+  height: auto;
+}
+
+.navbar-buttons {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-buttons li {
+  margin-left: 10px;
+}
+
+.navbar-button {
+  padding: 8px 10px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Customize the styling as needed */
