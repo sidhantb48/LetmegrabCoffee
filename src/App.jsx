@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Login from "./componenets/login/Login";
 import Navbar from "./componenets/navbar/Navbar";
 import Signin from "./componenets/SignIn/SignIn";
 import ProtectedContent from "./componenets/ProtectedContent/ProtectedContent";
 import NewNavbar from "./componenets/navbar/NewNavbar";
+import ProductTable from "./componenets/table/ProductTable";
+import ImageData from "./componenets/images/ImageData";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +16,11 @@ function App() {
   const handleLogin = (username, password) => {
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
+
+    console.log("Entered Username:", username);
+    console.log("Entered Password:", password);
+    console.log("Stored Username:", storedUsername);
+    console.log("Stored Password:", storedPassword);
 
     if (username === storedUsername && password === storedPassword) {
       setIsLoggedIn(true);
@@ -28,18 +35,12 @@ function App() {
   const handleSignIn = (username, password) => {
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    const expirationDate = new Date();
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
-    localStorage.setItem("expirationDate", expirationDate.toISOString());
     setIsLoggedIn(true);
-    setUsername(username);
+    setUsername(username, password);
     setCurrentPage("newnavbar");
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
-    localStorage.removeItem("expirationDate");
     setIsLoggedIn(false);
     setUsername("");
     setCurrentPage("navbar");
@@ -52,28 +53,6 @@ function App() {
   const handleNavigateToSignIn = () => {
     setCurrentPage("signin");
   };
-
-  const checkExpiration = () => {
-    const expirationDate = localStorage.getItem("expirationDate");
-    if (expirationDate) {
-      const currentDate = new Date();
-      if (currentDate > new Date(expirationDate)) {
-        handleLogout();
-      } else {
-        setIsLoggedIn(true); // Update isLoggedIn state if not expired
-      }
-    }
-  };
-
-  useEffect(() => {
-    checkExpiration();
-  }, []);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      setCurrentPage("login");
-    }
-  }, [isLoggedIn]);
 
   if (currentPage === "login") {
     return (
@@ -103,26 +82,24 @@ function App() {
     );
   }
 
-  if (currentPage === "newnavbar") {
+  if (isLoggedIn) {
     return (
       <div>
         <NewNavbar username={username} handleLogout={handleLogout} />
-        <h2>Welcome, {username}!</h2>
-        <button onClick={handleLogout}>Logout</button>
+        <ProductTable />
       </div>
     );
   }
 
-  if (currentPage === "navbar") {
-    return (
-      <div>
-        <Navbar
-          handleNavigateToLogin={handleNavigateToLogin}
-          handleNavigateToSignIn={handleNavigateToSignIn}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Navbar
+        handleNavigateToLogin={handleNavigateToLogin}
+        handleNavigateToSignIn={handleNavigateToSignIn}
+      />
+      <ImageData />
+    </div>
+  );
 }
 
 export default App;

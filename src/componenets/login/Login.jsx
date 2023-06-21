@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./index.css";
 
 function Login({ handleLogin, handleNavigateToSignIn }) {
   const [username, setUsername] = useState("");
@@ -9,7 +10,7 @@ function Login({ handleLogin, handleNavigateToSignIn }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!username || !password) {
-      setErrorMessage("Incomplete entries");
+      setErrorMessage("Incomplete Entries");
       return;
     }
     const storedUsername = localStorage.getItem("username");
@@ -20,13 +21,13 @@ function Login({ handleLogin, handleNavigateToSignIn }) {
     }
 
     setIsLoginSuccess(true);
-    handleLogin(username);
+    handleLogin(username, password);
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="login-container">
+      <h1>Login</h1>
+      <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
@@ -39,9 +40,14 @@ function Login({ handleLogin, handleNavigateToSignIn }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button className="signup-link" type="submit">
+          Login
+        </button>
+        <button className="signup-link" onClick={handleNavigateToSignIn}>
+          Sign In
+        </button>
       </form>
-      <button onClick={handleNavigateToSignIn}>Sign In</button>
+
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );

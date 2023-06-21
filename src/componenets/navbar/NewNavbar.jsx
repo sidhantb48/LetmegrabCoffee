@@ -5,12 +5,12 @@ function NewNavbar({ username, handleLogout }) {
         <img src="/assets/Logo.jpg" />
       </div>
       <ul className="navbar-buttons">
-        <li>
-          <span>Welcome, {username}!</span>
+        <li className="username">
+          <span>Welcome, {username}!😃</span>
         </li>
         <li>
-          <button className="navbar-button" onClick={handleLogout}>
-            Logout
+          <button className="new-navbar-button" onClick={handleLogout}>
+            Log Out
           </button>
         </li>
       </ul>

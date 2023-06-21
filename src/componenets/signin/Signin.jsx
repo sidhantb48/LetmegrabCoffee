@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./index.css";
 
 function Signin({ handleSignIn }) {
   const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ function Signin({ handleSignIn }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!username || !password || !confirmPassword) {
-      setErrorMessage("Incomplete entries");
+      setErrorMessage("Incomplete Entries");
       return;
     }
 
@@ -21,13 +22,13 @@ function Signin({ handleSignIn }) {
 
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    handleSignIn(username);
+    handleSignIn(username, password);
   };
   return (
-    <div>
-      <h1>Sign In Page</h1>
+    <div className="signin-container">
+      <h1>Sign In</h1>
       {errorMessage && <p>{errorMessage}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className="signin-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
@@ -52,7 +53,9 @@ function Signin({ handleSignIn }) {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <button type="submit">Sign In</button>
+        <button className="login-link" type="submit">
+          Sign In
+        </button>
       </form>
     </div>
   );
