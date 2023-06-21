@@ -16,7 +16,7 @@ function Navbar({ handleNavigateToLogin, handleNavigateToSignIn }) {
           </li>
           <li>
             <button className="navbar-button" onClick={handleNavigateToSignIn}>
-              Sign In
+              SignIn
             </button>
           </li>
         </ul>

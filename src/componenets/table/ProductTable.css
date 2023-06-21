@@ -2,6 +2,7 @@
   max-width: 10000px;
   margin: 0 auto;
   padding: 20px;
+  background: linear-gradient(45deg, #aff3ff, #ffffff);
 }
 
 input[type="text"] {
@@ -18,7 +19,7 @@ table {
 
 th,
 td {
-  border: 1px solid #ddd;
+  border: 1px solid #646161;
   padding: 8px;
   text-align: left;
 }

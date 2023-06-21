@@ -44,7 +44,7 @@ function Login({ handleLogin, handleNavigateToSignIn }) {
           Login
         </button>
         <button className="signup-link" onClick={handleNavigateToSignIn}>
-          Sign In
+          SignIn
         </button>
       </form>
 
