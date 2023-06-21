@@ -13,12 +13,12 @@ const Image = () => {
     centerMode: true,
     centerPadding: "80px",
     autoplay: true,
-    autoplaySpeed: 1400,
+    autoplaySpeed: 3000,
   };
 
   return (
-    <Slider {...settings}>
-      <div>
+    <Slider className="slider" {...settings}>
+      <div className="imageDisplay">
         <img className="img" src="/assets/Coffee1.jpg" alt="Image 1" />
       </div>
       <div>

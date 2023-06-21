@@ -1,3 +1,21 @@
 .img {
   height: 610px;
+  width: 910px;
+}
+
+.imageDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.slider {
+  background: linear-gradient(45deg, #fffb00, #e90bec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
